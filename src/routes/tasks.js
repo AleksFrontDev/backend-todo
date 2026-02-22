@@ -7,8 +7,10 @@ const {
   patchTask,
   deleteTask,
   toggleTask,
-} = require('../controllers/taskcontroller');
+} = require('../controllers/task.controller');
+const authMiddleware = require('../middleware/auth.middleware')
 
+router.use(authMiddleware)
 router.get('/', getTasks);
 router.post('/', createTask);
 router.put('/:id', updateTask);
