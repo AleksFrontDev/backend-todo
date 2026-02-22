@@ -19,6 +19,10 @@ const getTasks = async (req, res) => {
 // POST /tasks
 const createTask = async (req, res) => {
   try {
+     if (!req.body.title || req.body.title.trim() === '') {
+       return res.status(400).json({error: 'Title is required'});
+     }
+
     const task = await prisma.task.create({
       data: {
         title: req.body.title,
