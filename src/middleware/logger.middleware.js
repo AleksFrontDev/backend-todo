@@ -1,16 +1,19 @@
-const logger = (req, res, next) => {
-  const start = Date.now()
-  console.log(
-    `[${new Date().toISOString()}] ${req.method} ${req.url} - started`,
-  );
+const httpLogger = (req, res, next) => {
+  const start = Date.now();
+  const now = new Date().toLocaleDateString('sv-SE');
+
+  console.log(`[${now}] ${req.method} ${req.url} - started`);
 
   res.on('finish', () => {
     const duration = Date.now() - start;
     console.log(
-      `[${new Date().toISOString()}] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`,
+      `[${now}] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`,
     );
-  })
-  next();
-}
+  });
 
-module.exports = logger;
+  next();
+};
+
+module.exports = {
+  httpLogger,
+};

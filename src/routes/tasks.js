@@ -8,7 +8,7 @@ const {
   deleteTask,
   toggleTask,
 } = require('../controllers/task.controller');
-const {validate, validateParams} = require('../middleware/task.middleware');
+const {validate, validateParams} = require('../middleware/validate.middleware');
 const authMiddleware = require('../middleware/auth.middleware');
 const {
   createTaskSchema,
